@@ -53,8 +53,6 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 	}
 
 	public function get_style_depends() {
-
-		return array( 'twae-vertical-timeline', 'twae-common-styles', 'twae-horizontal-timeline', 'font-awesome-5-all' );
 		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
 			return array( 'twae-vertical-timeline', 'twae-common-styles', 'twae-horizontal-timeline', 'font-awesome-5-all' );
 		}

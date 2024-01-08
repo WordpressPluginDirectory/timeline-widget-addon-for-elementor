@@ -5,7 +5,7 @@ Tags:timeline,elementor,elementor timeline,elementor addon,elementor widgets,add
 Requires at least:5.0
 Tested up to:6.4
 Requires PHP:5.6
-Stable tag:1.5.2
+Stable tag:1.5.3
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,15 @@ It is really important to let your audience know about your brand history. Our t
 * Brand Story
 * **Roadmap**
 
+### Check our Timeline plugins demos
+<ul>
+<li><strong>Cool Timeline [Free]</strong>- <a href="https://cooltimeline.com/demo/cool-timeline-free/?utm_source=twae_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ctl_free_demos" target="_blank">Cool Timeline Free Demo</a></li>
+<li><strong>Cool Timeline Pro [Pro]</strong>- <a href="https://cooltimeline.com/demo/cool-timeline-pro/?utm_source=twae_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ctl_pro_demos" target="_blank">Cool Timeline PRO Demo</a></li>
+<li><strong>Timeline Block For Gutenberg [Free]</strong>-<a href="https://cooltimeline.com/demo/gutenberg-timeline-block/?utm_source=twae_plugin&utm_medium=readme&utm_campaign=demo&utm_content=tbg_demos">View Demo</a></a></li>
+
+<li><strong>Timeline Builder PRO [PRO]</strong>- <a href="https://cooltimeline.com/demo/timeline-builder-pro/?utm_source=twae_plugin&utm_medium=readme&utm_campaign=demo&utm_content=tbp_pro_demos">View Demo</a></li>
+</ul>
+
 It is an **[Elementor Website Builder](https://wordpress.org/plugins/elementor/)** Addon. In order to use this Elementor addon you must have to install **[Elementor Website Builder](https://wordpress.org/plugins/elementor/)**.
 
 ### 🌟 Timeline Widget PRO Features
@@ -69,14 +78,7 @@ It is an **[Elementor Website Builder](https://wordpress.org/plugins/elementor/)
     Font Awesome icon, custom text, or image as timeline Icon.
 * **[⭐ Buy PRO](https://coolplugins.net/product/elementor-timeline-widget-pro-addon/?utm_source=twae_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=buy_pro)**
 
-### Check our Timeline plugins demos
-<ul>
-<li><strong>Cool Timeline [Free]</strong>- <a href="https://cooltimeline.com/demo/cool-timeline-free/?utm_source=twae_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ctl_free_demos" target="_blank">Cool Timeline Free Demo</a></li>
-<li><strong>Cool Timeline Pro [Pro]</strong>- <a href="https://cooltimeline.com/demo/cool-timeline-pro/?utm_source=twae_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ctl_pro_demos" target="_blank">Cool Timeline PRO Demo</a></li>
-<li><strong>Timeline Block For Gutenberg [Free]</strong>-<a href="https://cooltimeline.com/demo/gutenberg-timeline-block/?utm_source=twae_plugin&utm_medium=readme&utm_campaign=demo&utm_content=tbg_demos">View Demo</a></a></li>
 
-<li><strong>Timeline Builder PRO [PRO]</strong>- <a href="https://cooltimeline.com/demo/timeline-builder-pro/?utm_source=twae_plugin&utm_medium=readme&utm_campaign=demo&utm_content=tbp_pro_demos">View Demo</a></li>
-</ul>
 
 **📌 Cool Timeline - #1 Timeline Plugin (200000+ Downloads)**
 
@@ -114,6 +116,11 @@ No. You cannot use it without Elementor since it’s an addon for Elementor.
 Yes, it will work with the Elementor Pro version.
 
 == Changelog ==
+<strong>Version 1.5.3 | 08 January 2024</strong>
+<pre>
+Fixed: Assets loading issue on frontend
+Fixed: Svg icon styling issue
+</pre>
 <strong>Version 1.5.2 | 08 November 2023</strong>
 <pre>
 Tested upto:WordPress version 6.4
