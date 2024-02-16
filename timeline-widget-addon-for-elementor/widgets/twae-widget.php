@@ -31,11 +31,6 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 
 		wp_register_style( 'font-awesome-5-all', ELEMENTOR_ASSETS_URL . 'lib/font-awesome/css/all' . $ext, array(), TWAE_VERSION, 'all' );// load elementor fontawesome
 		wp_register_script( 'twae-horizontal-js', TWAE_URL . 'assets/js/twae-horizontal.min.js', array( 'elementor-frontend', 'jquery' ), TWAE_VERSION, true );
-
-		 // load helper functions
-
-		 require_once TWAE_PATH . '/includes/twae-functions.php';
-
 	}
 
 	public function get_script_depends() {
@@ -260,6 +255,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				),
 			)
 		);
+
 		// Horizontal Layout [PRO]
 		$this->add_control(
 			'pro_layout_horizontal_settings',
@@ -307,20 +303,10 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 
 		$settings             = $this->get_settings_for_display();
 		$layout               = $settings['twae_layout'];
-		$data                 = $settings['twae_list'];
 		$compatibility_styles = '';
 		$story_styles         = '';
-		$timeline_style       = '';
-		$timeline_layout      = '';
 		global $post;
-		$post_id   = $post->ID;
-		$widget_id = $this->get_id();
-		$countItem = 1;
-		$isRTL     = is_rtl();
-		$dir       = '';
-		if ( $isRTL ) {
-			$dir = 'rtl';
-		}
+		$post_id = $post->ID;
 
 		// run code only for old users
 		if ( get_option( 'twae-v' ) != false ) {
@@ -329,9 +315,11 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 			// delete_post_meta($post_id, 'twae_style_migration');
 			if ( ! get_post_meta( $post_id, 'twae_style_migration', true ) ) {
 				update_post_meta( $post_id, 'twae_exists', 'yes' );
-				$compatibility_styles .= $this->older_v_compatibility( $post_id, $settings, $timeline_style );
+				$compatibility_styles .= $this->older_v_compatibility( $post_id, $settings );
 			}
 		}
+
+		require TWAE_PATH . 'widgets/frontend-layouts/twae-story-loop.php';
 
 		if ( $layout == 'horizontal' ) {
 
@@ -348,7 +336,10 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		}
 
 			$compatibility_styles .= $story_styles;
+
+		if ( ! empty( $compatibility_styles ) ) {
 			echo '<style type="text/css">' . $compatibility_styles . '</style>';
+		}
 
 	}
 
@@ -372,7 +363,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		}
 	}
 	// compatibility for < 1.3 versions
-	function older_v_compatibility( $post_id, $settings, $timeline_style ) {
+	function older_v_compatibility( $post_id, $settings ) {
 		$custom_styles  = '';
 		$widgetID       = '.elementor-' . $post_id . ' .elementor-element.elementor-element-' . $this->get_id();
 		$selector       = $widgetID . ' .twae-wrapper';
@@ -497,6 +488,44 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 
 	/* --------------------------- Add Story Repeater --------------------------- */
 	function content_controls() {
+
+		// Image and Icon controller options.
+		$media_option = array(
+			'image' => array(
+				'title' => __( 'Image', 'twae1' ),
+				'icon'  => 'fa fa-image',
+			),
+		);
+		$icon_option  = array(
+			'icon' => array(
+				'title' => __( 'Icon', 'twae1' ),
+				'icon'  => 'fab fa-font-awesome',
+			),
+		);
+
+		// Conditional based Image and Icon controller options.
+		$media_option['video']     = array(
+			'title' => __( 'Video', 'twae1' ),
+			'icon'  => 'fa fa-video',
+		);
+		$media_option['slideshow'] = array(
+			'title' => __( 'Slideshow', 'twae1' ),
+			'icon'  => 'fa fa-images',
+		);
+		$icon_option['customtext'] = array(
+			'title' => __( 'Text', 'twae1' ),
+			'icon'  => 'fa fa-list-ol',
+		);
+		$icon_option['image']      = array(
+			'title' => __( 'Image', 'twae1' ),
+			'icon'  => 'fa fa-images',
+		);
+
+		$icon_option['dot'] = array(
+			'title' => __( 'Dot', 'twae1' ),
+			'icon'  => 'eicon-circle',
+		);
+
 		// Add Timeline Stories Section
 		$this->start_controls_section(
 			'twae_content_section',
@@ -582,20 +611,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'label'     => __( 'Choose Media', 'twae1' ),
 				'type'      => \Elementor\Controls_Manager::CHOOSE,
 				'separator' => 'before',
-				'options'   => array(
-					'image'     => array(
-						'title' => __( 'Image', 'twae1' ),
-						'icon'  => 'fa fa-image',
-					),
-					'video'     => array(
-						'title' => __( 'Video', 'twae1' ),
-						'icon'  => 'fa fa-video',
-					),
-					'slideshow' => array(
-						'title' => __( 'Slideshow', 'twae1' ),
-						'icon'  => 'fa fa-images',
-					),
-				),
+				'options'   => $media_option,
 				'default'   => 'image',
 				'toggle'    => true,
 			)
@@ -634,6 +650,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				),
 			)
 		);
+
 		// Story Media - Slideshow [PRO]
 		$repeater->add_control(
 			'twae_pro_slideshow',
@@ -668,6 +685,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				),
 			)
 		);
+
 		// Story Description
 		$repeater->add_control(
 			'twae_description',
@@ -695,24 +713,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'label'     => __( 'Icon Type', 'twae1' ),
 				'type'      => \Elementor\Controls_Manager::CHOOSE,
 				'separator' => 'before',
-				'options'   => array(
-					'icon'       => array(
-						'title' => __( 'Icon', 'twae1' ),
-						'icon'  => 'fab fa-font-awesome',
-					),
-					'customtext' => array(
-						'title' => __( 'Text', 'twae1' ),
-						'icon'  => 'fa fa-list-ol',
-					),
-					'image'      => array(
-						'title' => __( 'Image', 'twae1' ),
-						'icon'  => 'fa fa-images',
-					),
-					'dot'        => array(
-						'title' => __( 'Dot', 'twae1' ),
-						'icon'  => 'eicon-circle',
-					),
-				),
+				'options'   => $icon_option,
 				'toggle'    => false,
 				'default'   => 'icon',
 			)
@@ -732,6 +733,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				),
 			)
 		);
+
 		// Story Image Icon [PRO]
 		$repeater->add_control(
 			'twae_pro_content_img',
@@ -740,7 +742,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'label_block'     => true,
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
 				'raw'             => '<a target="_blank" href="' . TWAE_BUY_PRO_LINK . '&utm_content=story_content_settings">
-							<img class="twae-screenshots" src="' . TWAE_URL . 'assets/images/pro/icon-image-settings.png"></a>',
+						<img class="twae-screenshots" src="' . TWAE_URL . 'assets/images/pro/icon-image-settings.png"></a>',
 				'content_classes' => 'twae_pro_content',
 				'condition'       => array(
 					'twae_icon_type' => array( 'image' ),
@@ -755,7 +757,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'label_block'     => true,
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
 				'raw'             => '<a target="_blank" href="' . TWAE_BUY_PRO_LINK . '&utm_content=story_content_settings">
-							<img class="twae-screenshots" src="' . TWAE_URL . 'assets/images/pro/icon-text-settings.png"></a>',
+						<img class="twae-screenshots" src="' . TWAE_URL . 'assets/images/pro/icon-text-settings.png"></a>',
 				'content_classes' => 'twae_pro_content',
 				'condition'       => array(
 					'twae_icon_type' => array( 'customtext' ),
@@ -770,7 +772,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'label_block'     => true,
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
 				'raw'             => '<a target="_blank" href="' . TWAE_BUY_PRO_LINK . '&utm_content=story_content_settings">
-							<img class="twae-screenshots" src="' . TWAE_URL . 'assets/images/pro/button-settings.png"></a>',
+						<img class="twae-screenshots" src="' . TWAE_URL . 'assets/images/pro/button-settings.png"></a>',
 				'content_classes' => 'twae_pro_content',
 				'separator'       => 'before',
 			)
@@ -1120,6 +1122,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				),
 			)
 		);
+
 		// Content Box Background Gradient [PRO]
 		$this->add_control(
 			'twae_story_bgcolor_gradient_pro',
@@ -1158,6 +1161,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Hover', 'twae1' ),
 			)
 		);
+
 		// Content Box Background Hover [PRO]
 		$this->add_control(
 			'twae_story_bgcolor_hover_pro',
@@ -1171,6 +1175,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 			)
 		);
 		$this->end_controls_tab();
+
 		// Content Box Background Tabs END
 		$this->end_controls_tabs();
 		$this->add_control(
@@ -1210,6 +1215,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 
 			)
 		);
+
 		// Content Box Border Styles [PRO]
 		$this->add_control(
 			'pro_cbox_settings',
@@ -1259,6 +1265,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				),
 			)
 		);
+
 		// Icon Styles [PRO]
 		$this->add_control(
 			'pro_icon_settings',
@@ -1270,6 +1277,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'content_classes' => 'twae_pro_content',
 			)
 		);
+
 		// Icon Box Section - END
 		$this->end_controls_section();
 	}
@@ -1285,6 +1293,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 			)
 		);
+
 		$this->add_control(
 			'pro_image_settings',
 			array(
@@ -1296,6 +1305,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'content_classes' => 'twae_pro_content',
 			)
 		);
+
 		$this->end_controls_section();
 		// Button Styles - [PRO]
 		$this->start_controls_section(
@@ -1509,7 +1519,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 					'unit' => 'px',
 				),
 				'mobile_default' => array(
-					'size' => 60,
+					'size' => 80,
 					'unit' => 'px',
 				),
 				'selectors'      => array(
@@ -1549,12 +1559,6 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				}
 
 			if(settings.twae_layout == 'horizontal'){
-				var sidesToShow = settings.twae_slides_to_show;
-				var sidesHeight = settings.twae_slides_height;
-				var autoplay = settings.twae_autoplay;
-				if(sidesToShow==''){
-					sidesToShow = 2;
-				}
 				#>
 				<?php
 				require TWAE_PATH . 'widgets/editor-layouts/horizontal-template.php';

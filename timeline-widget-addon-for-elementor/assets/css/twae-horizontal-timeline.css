@@ -68,7 +68,9 @@
   display: block;
   position: relative;
 }
-.twae-horizontal-timeline.twae-wrapper .twae-slider-container.swiper-container {
+
+.twae-horizontal-timeline.twae-wrapper .twae-slider-container.swiper-container,
+.twae-horizontal-timeline.twae-wrapper .twae-slider-container.swiper-container .swiper-wrapper{
   overflow: visible;
 }
 /* ------------------------------ Slider - END ------------------------------ */
@@ -188,7 +190,7 @@
   position: absolute;
   top: calc(var(--tw-ibx-size) / 2 - var(--tw-ibx-size) * 2 - (var(--tw-ybx-size) * ((60 + var(--tw-ibx-radius) / 1.25) / 100) - var(--tw-ibx-size)) / 2);
   /* left: calc(0px - var(--tw-cbx-space) * 0.5px - var(--tw-ybx-size) / 2); */
-  left: 10px;
+  left: 0px;
   margin: 0;
   justify-content: flex-start;
   width: auto;
@@ -219,25 +221,14 @@
   top: calc(0px - (var(--tw-lbl-big-size) + var(--tw-lbl-small-size) + var(--tw-lbl-gap)) - var(--tw-ibx-size) * 2);
   height: calc(var(--tw-lbl-big-size) + var(--tw-lbl-small-size) + var(--tw-lbl-gap));
   text-align: center;
+  width: auto;
+  left: calc(var(--tw-ibx-position) * 1% - var(--tw-ibx-size) * var(--tw-ibx-position) / 100 + var(--tw-ibx-size) / 2);
+  transform: translateX(-50%);
 }
 .twae-horizontal-timeline.twae-wrapper.twae-horizontal-bottom .twae-labels,
 .twae-horizontal-timeline.twae-wrapper.twae-horizontal-both .twae-story:nth-child(2n + 1) .twae-labels {
   top: auto;
   bottom: calc(0px - (var(--tw-lbl-big-size) + var(--tw-lbl-small-size) + var(--tw-lbl-gap)) - var(--tw-ibx-size) * 2);
-}
-.twae-horizontal-timeline.twae-wrapper .twae-position-40-minus .twae-labels {
-  text-align: left;
-  padding-left: calc(var(--tw-ibx-position) * 1% - var(--tw-ibx-size) * var(--tw-ibx-position) / 100);
-}
-.twae-horizontal-timeline.twae-wrapper .twae-position-40-50 .twae-labels {
-  width: calc((var(--tw-ibx-position) * 1% - var(--tw-ibx-size) * var(--tw-ibx-position) / 100) * 2 + var(--tw-ibx-size));
-}
-.twae-horizontal-timeline.twae-wrapper .twae-position-50-60 .twae-labels {
-  padding-left: calc(100% - ((100% - (var(--tw-ibx-position) * 1% - var(--tw-ibx-size) * var(--tw-ibx-position) / 100)) * 2 - var(--tw-ibx-size)));
-}
-.twae-horizontal-timeline.twae-wrapper .twae-position-60-plus .twae-labels {
-  text-align: right;
-  width: calc(var(--tw-ibx-size) + var(--tw-ibx-position) * 1% - var(--tw-ibx-size) * var(--tw-ibx-position) / 100);
 }
 /* ------------------------- Labels Horizontal - END ------------------------ */
 

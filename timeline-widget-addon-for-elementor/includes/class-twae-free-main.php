@@ -62,12 +62,14 @@ final class TWAE_Free_Main {
 	public function __construct() {
 
 		if ( $this->is_compatible() ) {
+			$twae_ads_close = get_option( 'twae_ads_close', false );
 			add_action( 'elementor/init', array( $this, 'init' ) );
 			// Add a custom category for panel widgets
 			add_action( 'elementor/init', array( $this, 'register_timeline_category' ) );
 		}
 
 	}
+
 	public function register_timeline_category() {
 
 			\Elementor\Plugin::$instance->elements_manager->add_category(

@@ -142,7 +142,7 @@ class cool_plugins_feedback{
         if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( $_POST['_wpnonce'], '_cool-plugins_deactivate_feedback_nonce' ) ) {
 			wp_send_json_error();
 		}else{
-            $reason = filter_var($_POST['reason'], FILTER_SANITIZE_STRING);
+            $reason = htmlspecialchars($_POST['reason'], ENT_QUOTES );
             $deactivate_reasons = [
                 'didnt_work_as_expected' => [
                     'title' => __( 'The plugin didn\'t work as expected', 'cool-plugins' ),

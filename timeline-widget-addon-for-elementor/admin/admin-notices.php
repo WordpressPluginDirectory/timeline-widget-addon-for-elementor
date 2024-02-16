@@ -168,7 +168,7 @@ if (!class_exists('twae_free_admin_notices')):
             });
             </script>';
             $nonce = wp_create_nonce( $id . '_notice_nonce' );
-            echo "<div class='".$id."_admin_notice $classes' data-ajax-url='".admin_url('admin-ajax.php')."' data-wp-nonce='". $nonce . "' data-plugin-slug='$id'><p>" . $message['message'] . "</p></div>" . $script;
+            echo "<div class='".esc_attr($id)."_admin_notice ".esc_attr($classes)."' data-ajax-url='".admin_url('admin-ajax.php')."' data-wp-nonce='". esc_attr($nonce) . "' data-plugin-slug='".esc_attr($id)."'><p>" . wp_kses_post($message['message']) . "</p></div>" . $script;
         }
 
         /**
@@ -268,19 +268,19 @@ if (!class_exists('twae_free_admin_notices')):
       
 
         return sprintf($html,
-                $wrap_cls,
-                $img_path,
-                $plugin_name,
-                $message,
-                $plugin_link,
+                esc_attr($wrap_cls),
+                esc_url($img_path),
+                esc_attr($plugin_name),
+                wp_kses_post($message),
+                esc_url($plugin_link),
                 $like_it_text,
                 $already_rated_text,
-                $ajax_url,// 8
-                $ajax_callback,//9
+                esc_url($ajax_url),// 8
+                esc_attr($ajax_callback),//9
                 $not_like_it_text,//10
-                $slug, //11
-                $review_nonce, //12
-                $id //13
+                esc_attr($slug), //11
+                esc_attr($review_nonce), //12
+                esc_attr($id) //13
         );
         
        }
@@ -290,8 +290,8 @@ if (!class_exists('twae_free_admin_notices')):
         * This is called by a wordpress ajax hook
         */
         public function twae_free_admin_review_notice_dismiss(){
-            $slug = filter_var($_REQUEST['slug'], FILTER_SANITIZE_STRING);
-            $id   = filter_var($_REQUEST['id'], FILTER_SANITIZE_STRING); 
+            $slug = htmlspecialchars($_REQUEST['slug'], ENT_QUOTES );
+            $id   = htmlspecialchars($_REQUEST['id'], ENT_QUOTES ); 
             $nonce_key = $id . '_review_nonce' ;
            
             if( check_ajax_referer( $nonce_key, '_nonce' ) ){
@@ -309,8 +309,7 @@ if (!class_exists('twae_free_admin_notices')):
          ************************************************************/
         public function twae_free_admin_notice_dismiss()
         {
-           
-            $id = filter_var($_REQUEST['id'], FILTER_SANITIZE_STRING); 
+            $id = htmlspecialchars($_REQUEST['id'], ENT_QUOTES ); 
             $wp_nonce = $id . '_notice_nonce';
             if( check_ajax_referer($wp_nonce , '_nonce') ){
                 $us = update_option( $id . '_remove_notice','yes' );
