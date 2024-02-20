@@ -5,7 +5,7 @@ Tags:timeline,elementor,elementor timeline,elementor addon,elementor widgets,add
 Requires at least:5.0
 Tested up to:6.4
 Requires PHP:5.6
-Stable tag:1.5.5
+Stable tag:1.5.6
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,10 @@ No. You cannot use it without Elementor since it’s an addon for Elementor.
 Yes, it will work with the Elementor Pro version.
 
 == Changelog ==
+<strong>Version 1.5.6 | 19 February 2024</strong>
+<pre>
+Fixed: Timeline settings translation issue
+</pre>
 <strong>Version 1.5.5 | 16 February 2024</strong>
 <pre>
 Added: Code Improvement.

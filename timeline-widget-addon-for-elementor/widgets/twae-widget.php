@@ -85,7 +85,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'twae_layout_section',
 			array(
-				'label' => __( 'Layout Settings', 'twae1' ),
+				'label' => __( 'Layout Settings', 'twae' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -93,7 +93,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_layout',
 			array(
-				'label'   => __( 'Layout', 'twae1' ),
+				'label'   => __( 'Layout', 'twae' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'centered',
 				'options' => array(
@@ -165,7 +165,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'twae_icon_position',
 			array(
-				'label'       => __( 'Icon / Labels Position', 'twae1' ),
+				'label'       => __( 'Icon / Labels Position', 'twae' ),
 				'type'        => \Elementor\Controls_Manager::SLIDER,
 				'render_type' => 'template',
 				'range'       => array(
@@ -192,7 +192,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_horizontal_slides',
 			array(
-				'label'     => esc_html__( '🔶 Horizontal Slides', 'twae1' ),
+				'label'     => esc_html__( '🔶 Horizontal Slides', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => array(
@@ -208,12 +208,12 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'default'   => 2,
 				'options'   => array(
-					1 => esc_html__( '1 Slide', 'twae1' ),
-					2 => esc_html__( '2 Slides', 'twae1' ),
-					3 => esc_html__( '3 Slides', 'twae1' ),
-					4 => esc_html__( '4 Slides', 'twae1' ),
-					5 => esc_html__( '5 Slides', 'twae1' ),
-					6 => esc_html__( '6 Slides', 'twae1' ),
+					1 => esc_html__( '1 Slide', 'twae' ),
+					2 => esc_html__( '2 Slides', 'twae' ),
+					3 => esc_html__( '3 Slides', 'twae' ),
+					4 => esc_html__( '4 Slides', 'twae' ),
+					5 => esc_html__( '5 Slides', 'twae' ),
+					6 => esc_html__( '6 Slides', 'twae' ),
 				),
 				'condition' => array(
 					'twae_layout' => 'horizontal',
@@ -224,7 +224,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_autoplay',
 			array(
-				'label'     => __( 'Autoplay', 'twae1' ),
+				'label'     => __( 'Autoplay', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'default'   => 'false',
 				'options'   => array(
@@ -242,8 +242,8 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_slides_height',
 			array(
-				'label'       => __( 'Slides Height', 'twae1' ),
-				'description' => __( 'Make all slides the same height based on the tallest slide', 'twae1' ),
+				'label'       => __( 'Slides Height', 'twae' ),
+				'description' => __( 'Make all slides the same height based on the tallest slide', 'twae' ),
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'default'     => 'no-height',
 				'options'     => array(
@@ -492,37 +492,37 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		// Image and Icon controller options.
 		$media_option = array(
 			'image' => array(
-				'title' => __( 'Image', 'twae1' ),
+				'title' => __( 'Image', 'twae' ),
 				'icon'  => 'fa fa-image',
 			),
 		);
 		$icon_option  = array(
 			'icon' => array(
-				'title' => __( 'Icon', 'twae1' ),
+				'title' => __( 'Icon', 'twae' ),
 				'icon'  => 'fab fa-font-awesome',
 			),
 		);
 
 		// Conditional based Image and Icon controller options.
 		$media_option['video']     = array(
-			'title' => __( 'Video', 'twae1' ),
+			'title' => __( 'Video', 'twae' ),
 			'icon'  => 'fa fa-video',
 		);
 		$media_option['slideshow'] = array(
-			'title' => __( 'Slideshow', 'twae1' ),
+			'title' => __( 'Slideshow', 'twae' ),
 			'icon'  => 'fa fa-images',
 		);
 		$icon_option['customtext'] = array(
-			'title' => __( 'Text', 'twae1' ),
+			'title' => __( 'Text', 'twae' ),
 			'icon'  => 'fa fa-list-ol',
 		);
 		$icon_option['image']      = array(
-			'title' => __( 'Image', 'twae1' ),
+			'title' => __( 'Image', 'twae' ),
 			'icon'  => 'fa fa-images',
 		);
 
 		$icon_option['dot'] = array(
-			'title' => __( 'Dot', 'twae1' ),
+			'title' => __( 'Dot', 'twae' ),
 			'icon'  => 'eicon-circle',
 		);
 
@@ -530,7 +530,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'twae_content_section',
 			array(
-				'label' => __( 'Timeline Stories', 'twae1' ),
+				'label' => __( 'Timeline Stories', 'twae' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -545,17 +545,17 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->start_controls_tab(
 			'twae_content_tab',
 			array(
-				'label' => __( 'Content', 'twae1' ),
+				'label' => __( 'Content', 'twae' ),
 			)
 		);
 		// Story Year / Label Show/Hide
 		$repeater->add_control(
 			'twae_show_year_label',
 			array(
-				'label'        => __( 'Year / Label (Top)', 'twae1' ),
+				'label'        => __( 'Year / Label (Top)', 'twae' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => __( 'Show', 'twae1' ),
-				'label_off'    => __( 'Hide', 'twae1' ),
+				'label_on'     => __( 'Show', 'twae' ),
+				'label_off'    => __( 'Hide', 'twae' ),
 				'return_value' => 'yes',
 				'default'      => 'no',
 				'separator'    => 'before',
@@ -565,7 +565,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'twae_year',
 			array(
-				'label'     => __( 'Year / Label Text', 'twae1' ),
+				'label'     => __( 'Year / Label Text', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::TEXT,
 				'default'   => '2022',
 				'condition' => array(
@@ -579,7 +579,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'twae_date_label',
 			array(
-				'label'   => __( 'Label / Date', 'twae1' ),
+				'label'   => __( 'Label / Date', 'twae' ),
 				'type'    => \Elementor\Controls_Manager::TEXT,
 				'default' => 'March 30',
 			)
@@ -588,7 +588,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'twae_extra_label',
 			array(
-				'label'   => __( 'Sub Label', 'twae1' ),
+				'label'   => __( 'Sub Label', 'twae' ),
 				'type'    => \Elementor\Controls_Manager::TEXT,
 				'default' => 'Sub Label',
 			)
@@ -597,7 +597,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'twae_story_title',
 			array(
-				'label'       => __( 'Title', 'twae1' ),
+				'label'       => __( 'Title', 'twae' ),
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'default'     => 'Add Title Here',
 				'label_block' => true,
@@ -608,7 +608,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'twae_media',
 			array(
-				'label'     => __( 'Choose Media', 'twae1' ),
+				'label'     => __( 'Choose Media', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::CHOOSE,
 				'separator' => 'before',
 				'options'   => $media_option,
@@ -620,9 +620,9 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'twae_image',
 			array(
-				'label'       => __( 'Choose Image', 'twae1' ),
+				'label'       => __( 'Choose Image', 'twae' ),
 				'type'        => \Elementor\Controls_Manager::MEDIA,
-				'description' => __( 'Image Size will not work with default image', 'twae1' ),
+				'description' => __( 'Image Size will not work with default image', 'twae' ),
 				'default'     => array(
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
 				),
@@ -641,7 +641,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'name'        => 'twae_thumbnail', // Usage: `{name}_size` and `{name}_custom_dimension`, in this case `thumbnail_size` and `thumbnail_custom_dimension`.
 				'separator'   => 'none',
 				'default'     => 'large',
-				'description' => __( 'Image Size will not work with dummy image.', 'twae1' ),
+				'description' => __( 'Image Size will not work with dummy image.', 'twae' ),
 				'exclude'     => array( 'custom' ),
 				'condition'   => array(
 					'twae_media' => array(
@@ -690,7 +690,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'twae_description',
 			array(
-				'label'     => __( 'Description', 'twae1' ),
+				'label'     => __( 'Description', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::WYSIWYG,
 				'default'   => 'Add Description Here',
 				'separator' => 'before',
@@ -703,14 +703,14 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->start_controls_tab(
 			'twae_advanced_tab',
 			array(
-				'label' => __( 'Advanced', 'twae1' ),
+				'label' => __( 'Advanced', 'twae' ),
 			)
 		);
 		// Story Icon Type
 		$repeater->add_control(
 			'twae_icon_type',
 			array(
-				'label'     => __( 'Icon Type', 'twae1' ),
+				'label'     => __( 'Icon Type', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::CHOOSE,
 				'separator' => 'before',
 				'options'   => $icon_option,
@@ -722,7 +722,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'twae_story_icon',
 			array(
-				'label'     => __( 'FontAwesome Icon', 'twae1' ),
+				'label'     => __( 'FontAwesome Icon', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::ICONS,
 				'default'   => array(
 					'value'   => 'far fa-clock',
@@ -784,7 +784,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$repeater->start_controls_tab(
 			'twae_style_tab',
 			array(
-				'label' => __( 'Colors', 'twae1' ),
+				'label' => __( 'Colors', 'twae' ),
 			)
 		);
 		// Story Colors [PRO]
@@ -809,16 +809,16 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_list',
 			array(
-				'label'       => __( 'Content', 'twae1' ),
+				'label'       => __( 'Content', 'twae' ),
 				'type'        => \Elementor\Controls_Manager::REPEATER,
 				'fields'      => $repeater->get_controls(),
 				'default'     => array(
 					array(
-						'twae_story_title' => __( 'Amazon is born', 'twae1' ),
-						'twae_description' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Erat enim res aperta. Ne discipulum abducam, times. Primum quid tu dicis breve? An haec ab eo non dicuntur?', 'twae1' ),
-						'twae_year'        => __( '1994', 'twae1' ),
-						'twae_date_label'  => __( 'July 5', 'twae1' ),
-						'twae_extra_label' => __( 'Introduced', 'twae1' ),
+						'twae_story_title' => __( 'Amazon is born', 'twae' ),
+						'twae_description' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Erat enim res aperta. Ne discipulum abducam, times. Primum quid tu dicis breve? An haec ab eo non dicuntur?', 'twae' ),
+						'twae_year'        => __( '1994', 'twae' ),
+						'twae_date_label'  => __( 'July 5', 'twae' ),
+						'twae_extra_label' => __( 'Introduced', 'twae' ),
 						'twae_image'       => array(
 							'url' => TWAE_URL . 'assets/images/amazon1.jpg',
 							'id'  => '',
@@ -826,11 +826,11 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 						'twae_video_url'   => '',
 					),
 					array(
-						'twae_story_title' => __( 'Amazon Prime debuts', 'twae1' ),
-						'twae_description' => __( 'Aliter homines, aliter philosophos loqui putas oportere? Sin aliud quid voles, postea. Mihi enim satis est, ipsis non satis. Negat enim summo bono afferre incrementum diem. Quod ea non occurrentia fingunt, vincunt Aristonem.', 'twae1' ),
-						'twae_year'        => __( '2005', 'twae1' ),
-						'twae_date_label'  => __( 'February 2', 'twae1' ),
-						'twae_extra_label' => __( 'Expanded', 'twae1' ),
+						'twae_story_title' => __( 'Amazon Prime debuts', 'twae' ),
+						'twae_description' => __( 'Aliter homines, aliter philosophos loqui putas oportere? Sin aliud quid voles, postea. Mihi enim satis est, ipsis non satis. Negat enim summo bono afferre incrementum diem. Quod ea non occurrentia fingunt, vincunt Aristonem.', 'twae' ),
+						'twae_year'        => __( '2005', 'twae' ),
+						'twae_date_label'  => __( 'February 2', 'twae' ),
+						'twae_extra_label' => __( 'Expanded', 'twae' ),
 						'twae_image'       => array(
 							'url' => TWAE_URL . 'assets/images/amazon2.jpg',
 							'id'  => '',
@@ -838,11 +838,11 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 						'twae_video_url'   => '',
 					),
 					array(
-						'twae_story_title' => __( 'Amazon acquires Audible', 'twae1' ),
-						'twae_description' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'twae1' ),
-						'twae_year'        => __( '2008', 'twae1' ),
-						'twae_date_label'  => __( 'January 31', 'twae1' ),
-						'twae_extra_label' => __( 'Expanded', 'twae1' ),
+						'twae_story_title' => __( 'Amazon acquires Audible', 'twae' ),
+						'twae_description' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'twae' ),
+						'twae_year'        => __( '2008', 'twae' ),
+						'twae_date_label'  => __( 'January 31', 'twae' ),
+						'twae_extra_label' => __( 'Expanded', 'twae' ),
 						'twae_image'       => array(
 							'url' => TWAE_URL . 'assets/images/amazon3.png',
 							'id'  => '',
@@ -901,7 +901,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'twae_storycontent_section',
 			array(
-				'label' => __( '#️⃣ Title / Desc ', 'twae1' ),
+				'label' => __( '#️⃣ Title / Desc ', 'twae' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -909,7 +909,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_title_section',
 			array(
-				'label' => __( '🔶 Title', 'twae1' ),
+				'label' => __( '🔶 Title', 'twae' ),
 				'type'  => \Elementor\Controls_Manager::HEADING,
 			)
 		);
@@ -918,7 +918,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_story_title_color',
 			array(
-				'label'     => __( 'Color', 'twae1' ),
+				'label'     => __( 'Color', 'twae' ),
 				'type'      => Controls_Manager::COLOR,
 				'separator' => 'before',
 				'selectors' => array(
@@ -932,7 +932,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'               => 'twae_title_typography',
-				'label'              => __( 'Typography', 'twae1' ),
+				'label'              => __( 'Typography', 'twae' ),
 				'selector'           => '{{WRAPPER}} .twae-title, .twae-popup .twae-title',
 				'frontend_available' => true,
 			// 'exclude'            => array( 'line_height' ),
@@ -962,7 +962,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_description_section',
 			array(
-				'label'     => __( '🔶 Description', 'twae1' ),
+				'label'     => __( '🔶 Description', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -971,7 +971,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_description_color',
 			array(
-				'label'     => __( 'Color', 'twae1' ),
+				'label'     => __( 'Color', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'separator' => 'before',
 				'selectors' => array(
@@ -985,7 +985,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'twae_description_typography',
-				'label'    => __( 'Typography', 'twae1' ),
+				'label'    => __( 'Typography', 'twae' ),
 				'selector' => '{{WRAPPER}} .twae-description, {{WRAPPER}} .twae-button a, .twae-popup .twae-description',
 			// 'exclude'  => array( 'line_height' ),
 			)
@@ -1022,7 +1022,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'twae_cbox_section',
 			array(
-				'label' => __( '🔳 Content Background / Border', 'twae1' ),
+				'label' => __( '🔳 Content Background / Border', 'twae' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1030,7 +1030,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_cbox_padding',
 			array(
-				'label'      => __( 'Padding', 'twae1' ),
+				'label'      => __( 'Padding', 'twae' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px' ),
 				'selectors'  => array(
@@ -1065,7 +1065,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_cbox_background',
 			array(
-				'label'     => __( '🔶 Content Box Background', 'twae1' ),
+				'label'     => __( '🔶 Content Box Background', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -1081,7 +1081,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'twae_cbox_background_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'twae1' ),
+				'label' => esc_html__( 'Normal', 'twae' ),
 			)
 		);
 		// Content Box Background Type Normal
@@ -1158,7 +1158,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_tab(
 			'twae_cbox_background_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'twae1' ),
+				'label' => esc_html__( 'Hover', 'twae' ),
 			)
 		);
 
@@ -1181,7 +1181,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_cbox_border',
 			array(
-				'label'     => __( '🔶 Content Box Border', 'twae1' ),
+				'label'     => __( '🔶 Content Box Border', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -1202,7 +1202,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_cbox_border_width',
 			array(
-				'label'      => __( 'Border Width', 'twae1' ),
+				'label'      => __( 'Border Width', 'twae' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px' ),
 				'selectors'  => array(
@@ -1239,7 +1239,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'twae_icon_section',
 			array(
-				'label' => __( '🔵 Icon Box / Dot', 'twae1' ),
+				'label' => __( '🔵 Icon Box / Dot', 'twae' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1247,7 +1247,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_icon_bgcolor',
 			array(
-				'label'     => __( 'Icon / Dot Background', 'twae1' ),
+				'label'     => __( 'Icon / Dot Background', 'twae' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .twae-wrapper, {{WRAPPER}} .twae-navigationBar' => '--tw-ibx-bg: {{VALUE}}',
@@ -1258,7 +1258,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_icon_color',
 			array(
-				'label'     => __( 'Icon / Text Color', 'twae1' ),
+				'label'     => __( 'Icon / Text Color', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .twae-wrapper, {{WRAPPER}} .twae-navigationBar' => '--tw-ibx-color: {{VALUE}}',
@@ -1289,7 +1289,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'twae_image_section',
 			array(
-				'label' => __( '📺 Image / Media - PRO', 'twae1' ),
+				'label' => __( '📺 Image / Media - PRO', 'twae' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1311,7 +1311,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'twae_button_section',
 			array(
-				'label' => __( '🅱 Button (Read More) - PRO', 'twae1' ),
+				'label' => __( '🅱 Button (Read More) - PRO', 'twae' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1336,7 +1336,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'twae_yld_section',
 			array(
-				'label' => __( '📢 Labels / Date / Year Box', 'twae1' ),
+				'label' => __( '📢 Labels / Date / Year Box', 'twae' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1344,7 +1344,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_yld_labels',
 			array(
-				'label' => __( '🔶 Label / Sub Label / Date', 'twae1' ),
+				'label' => __( '🔶 Label / Sub Label / Date', 'twae' ),
 				'type'  => \Elementor\Controls_Manager::HEADING,
 			)
 		);
@@ -1353,7 +1353,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_date_label_color',
 			array(
-				'label'     => __( 'Label Color', 'twae1' ),
+				'label'     => __( 'Label Color', 'twae' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .twae-wrapper' => '--tw-lbl-big-color: {{VALUE}}',
@@ -1366,7 +1366,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'twae_label_typography',
-				'label'    => __( 'Label Typography', 'twae1' ),
+				'label'    => __( 'Label Typography', 'twae' ),
 				'selector' => '{{WRAPPER}} .twae-label-big,{{WRAPPER}} .twae_icon_text',
 				'exclude'  => array( 'line_height', 'font_size', 'letter_spacing', 'word_spacing' ),
 			)
@@ -1405,7 +1405,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_extra_label_color',
 			array(
-				'label'     => __( 'Sub Label Color', 'twae1' ),
+				'label'     => __( 'Sub Label Color', 'twae' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .twae-wrapper' => '--tw-lbl-small-color: {{VALUE}}',
@@ -1418,7 +1418,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'twae_extra_label_typography',
-				'label'    => __( 'Sub Label Typography', 'twae1' ),
+				'label'    => __( 'Sub Label Typography', 'twae' ),
 				'selector' => '{{WRAPPER}} .twae-label-small',
 				'exclude'  => array( 'line_height', 'font_size', 'letter_spacing', 'word_spacing' ),
 			)
@@ -1457,7 +1457,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_year_label_section',
 			array(
-				'label'     => __( '🔶 Year/Label (On Line)', 'twae1' ),
+				'label'     => __( '🔶 Year/Label (On Line)', 'twae' ),
 				'type'      => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -1466,7 +1466,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_year_label_color',
 			array(
-				'label'     => __( 'Color', 'twae1' ),
+				'label'     => __( 'Color', 'twae' ),
 				'type'      => Controls_Manager::COLOR,
 				'separator' => 'before',
 				'selectors' => array(
@@ -1479,7 +1479,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'twae_year_label_bgcolor',
 			array(
-				'label'     => __( 'Background Color', 'twae1' ),
+				'label'     => __( 'Background Color', 'twae' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .twae-wrapper, {{WRAPPER}} .twae-navigationBar' => '--tw-ybx-bg: {{VALUE}}',
@@ -1491,7 +1491,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'twae_year_typography_new',
-				'label'    => __( 'Typography', 'twae1' ),
+				'label'    => __( 'Typography', 'twae' ),
 				'exclude'  => array( 'line_height' ),
 				'selector' => '{{WRAPPER}} .twae-year-text',
 			)
