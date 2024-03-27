@@ -3,9 +3,9 @@ Contributors:narinder-singh,satindersingh,coolplugins
 Donate link: https://paypal.me/CoolPlugins/10USD/
 Tags:timeline,elementor,elementor timeline,elementor addon,elementor widgets,addons,roadmap,steps,event,history
 Requires at least:5.0
-Tested up to:6.4
+Tested up to:6.5
 Requires PHP:5.6
-Stable tag:1.5.6
+Stable tag:1.5.7
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,11 @@ No. You cannot use it without Elementor since it’s an addon for Elementor.
 Yes, it will work with the Elementor Pro version.
 
 == Changelog ==
+<strong>Version 1.5.7 | 27 March 2024</strong>
+<pre>
+Tested upto: Tested with Elementor 3.20.2 and WordPress 6.5
+</pre>
+
 <strong>Version 1.5.6 | 19 February 2024</strong>
 <pre>
 Fixed: Timeline settings translation issue
