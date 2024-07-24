@@ -3,10 +3,11 @@ var widgetId=elementorCommon.helpers.getUniqueId();
 var slideToShow=settings.twae_slides_to_show;
 var slideHeight=settings.twae_slides_height;
 var autoplay = settings.twae_autoplay;
+var autoHeight=slideHeight === 'no-height' ? 'true' : 'false';
 #>
 <div id="twae-wrapper-{{widgetId}}" class="twae-wrapper twae-horizontal-timeline">
 <div class="twae-wrapper-inside">
-	<div class="twae-slider-container swiper-container" data-dir="<?php echo esc_attr( $dir ); ?>" data-slidestoshow = "{{slideToShow}}" data-autoplay="{{autoplay}}">
+	<div class="twae-slider-container swiper-container" data-dir="<?php echo esc_attr( $dir ); ?>" data-slidestoshow = "{{slideToShow}}" data-autoplay="{{autoplay}}" data-auto-height="{{autoHeight}}">
 
 	<div class="twae-slider-wrapper swiper-wrapper {{slideHeight}}">
 	<#

@@ -343,8 +343,14 @@
 
 /* -------------------------- Story Box Horizontal -------------------------- */
 .twae-horizontal-timeline.twae-wrapper .twae-story {
-  margin-top: calc(var(--tw-ibx-size) * 2 + var(--tw-lbl-big-size) + var(--tw-lbl-small-size) + var(--tw-lbl-gap) + 20px);
+  margin-bottom: 0;
 }
+
+.twae-horizontal-timeline.twae-wrapper .twae-slider-wrapper{
+  margin-top: calc(var(--tw-ibx-size) * 2 + var(--tw-lbl-big-size) + var(--tw-lbl-small-size) + var(--tw-lbl-gap) + 20px);
+  margin-bottom: var(--tw-cbx-bottom-margin);
+}
+
 .twae-horizontal-timeline.twae-wrapper.twae-horizontal-bottom .twae-story,
 .twae-horizontal-timeline.twae-wrapper.twae-horizontal-both .twae-story:nth-child(2n + 1) {
   margin-top: 0px;

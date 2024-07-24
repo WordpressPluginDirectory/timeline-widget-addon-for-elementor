@@ -26,6 +26,7 @@ $this->add_render_attribute(
 		'data-dir'          => esc_attr( $dir ),
 		'data-slidestoshow' => esc_attr( $sidesToShow ),
 		'data-autoplay'     => esc_attr( $autoplay ),
+		'data-auto-height'  => $sidesHeight === 'no-height' ? 'true' : 'false',
 		'class'             => array( 'twae-slider-container', 'swiper-container' ),
 	)
 );
