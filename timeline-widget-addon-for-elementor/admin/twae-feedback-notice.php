@@ -28,7 +28,7 @@ if ( ! class_exists( 'TWAEFeedbackNotice' ) ) {
 
 			// check user already rated
 			if ( $alreadyRated == 'yes' ) {
-				   return;
+				return;
 			}
 			$twae_review_css = '.cool-feedback-notice-wrapper.notice.notice-info.is-dismissible {
             padding: 5px;
@@ -70,13 +70,16 @@ if ( ! class_exists( 'TWAEFeedbackNotice' ) ) {
 			  jQuery(document).ready(function ($) {
 				$('.twae_dismiss_notice').on('click', function (event) {
 					var $this = $(this);
-					var wrapper=$this.parents('.cool-feedback-notice-wrapper');
-					var ajaxURL=wrapper.data('ajax-url');
-					var ajaxCallback=wrapper.data('ajax-callback');
-					
-					$.post(ajaxURL, { 'action':ajaxCallback }, function( data ) {
+					var wrapper = $this.parents('.cool-feedback-notice-wrapper');
+					var ajaxURL = wrapper.data('ajax-url');
+					var ajaxCallback = wrapper.data('ajax-callback');
+
+					// Use nonce for security
+					var nonce = '<?php echo wp_create_nonce( 'twae_dismiss_nonce' ); ?>';
+
+					$.post(ajaxURL, { 'action': ajaxCallback, 'nonce': nonce }, function(data) {
 						wrapper.slideUp('fast');
-					  }, "json");
+					}, "json");
 
 				});
 			});
@@ -88,7 +91,10 @@ if ( ! class_exists( 'TWAEFeedbackNotice' ) ) {
 
 		}
 		// ajax callback for review notice
-		public function twae_dismiss_review_notice() {
+		public function twae_dismiss_review_notice() { 
+			// Verify nonce for security
+			check_ajax_referer( 'twae_dismiss_nonce', 'nonce' );
+
 			$rs = update_option( 'twae-alreadyRated', 'yes' );
 			echo json_encode( array( 'success' => 'true' ) );
 			exit;

@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $widget_id   = $this->get_id();
 $isRTL       = is_rtl();
 $dir         = $isRTL ? 'rtl' : '';
-$data        = $settings['twae_list'];
+$data        = isset( $settings['twae_list'] ) ? $settings['twae_list'] : array();
 $sidesToShow = isset( $settings['twae_slides_to_show'] ) && ! empty( $settings['twae_slides_to_show'] ) ? $settings['twae_slides_to_show'] : 2;
 $sidesHeight = isset( $settings['twae_slides_height'] ) ? $settings['twae_slides_height'] : 'no-height';
 $autoplay    = isset( $settings['twae_autoplay'] ) ? $settings['twae_autoplay'] : 'false';
@@ -44,7 +44,6 @@ if ( is_array( $data ) ) {
 	foreach ( $data as $index => $content ) {
 
 		$story_id             = $content['_id'];
-		$timeline_story_title = $content['twae_story_title'];
 		$icon_type            = isset( $content['twae_icon_type'] ) ? $content['twae_icon_type'] : 'icon';
 
 		$this->add_render_attribute( 'twae_story_title', array( 'class' => esc_html( 'twae-title' ) ) );

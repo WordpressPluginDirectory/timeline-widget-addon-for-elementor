@@ -55,6 +55,11 @@ if ( ! class_exists( 'Twae_Story_Loop' ) ) {
 		 * @param array $render_repeater_attr  The render attributes for the story loop.
 		 */
 		public function twae_story_loop( $content, $repeater_key, $render_repeater_attr ) {
+			// Sanitize inputs
+			$content              = $content;
+			$repeater_key         = array_map( 'sanitize_text_field', $repeater_key );
+			$render_repeater_attr = array_map( 'sanitize_text_field', $render_repeater_attr );
+
 			$html = '';
 			// Story content array.
 			$this->story_data = $content;
@@ -170,31 +175,35 @@ if ( ! class_exists( 'Twae_Story_Loop' ) ) {
 		public function twae_story_image() {
 			$html       = '';
 			$story_data = $this->story_data;
+
 			// Story image size.
 			$image_size = $story_data['twae_thumbnail_size'];
 			// Story title for image alt text.
 			$timeline_story_title = $story_data['twae_story_title'];
 			$image                = '';
-			if ( isset( $story_data['twae_image'] ) && $story_data['twae_image']['id'] != '' ) {
-				if ( $image_size == 'custom' ) {
-					// Image custom dimension.
-					$thumbnail_custom_dimension = $story_data['twae_thumbnail_custom_dimension'];
-					// Image custom size.
-					$custom_size = array( $thumbnail_custom_dimension['width'], $thumbnail_custom_dimension['height'] );
-					// Story media image.
-					$image .= wp_get_attachment_image( esc_attr( $story_data['twae_image']['id'] ), esc_attr( $custom_size ) );
-				} else {
-					// Story media image.
-					$image = wp_get_attachment_image( esc_attr( $story_data['twae_image']['id'] ), esc_attr( $image_size ) );
-				}
-			} elseif ( isset( $story_data['twae_image'] ) && $story_data['twae_image']['url'] != '' ) {
-				// Story media image.
-				$image .= '<img src="' . esc_url( $story_data['twae_image']['url'] ) . '" alt="' . esc_attr( $timeline_story_title ) . '">';
-			}
 
-			if ( isset( $story_data['twae_image'] ) && $story_data['twae_image']['url'] != '' && $story_data['twae_media'] == 'image' ) {
-				$html .= '<!-- Story Image -->';
-				$html .= '<div class="twae-media ' . esc_attr( $image_size ) . '">' . $image . '</div>';
+			if ( isset( $story_data['twae_image'] ) && is_array( $story_data['twae_image'] ) ) {
+				if ( $story_data['twae_image']['id'] != '' ) {
+					if ( $image_size == 'custom' ) {
+						// Image custom dimension.
+						$thumbnail_custom_dimension = $story_data['twae_thumbnail_custom_dimension'];
+						// Image custom size.
+						$custom_size = array( $thumbnail_custom_dimension['width'], $thumbnail_custom_dimension['height'] );
+						// Story media image.
+						$image .= wp_get_attachment_image( esc_attr( $story_data['twae_image']['id'] ), esc_attr( $custom_size ) );
+					} else {
+						// Story media image.
+						$image = wp_get_attachment_image( esc_attr( $story_data['twae_image']['id'] ), esc_attr( $image_size ) );
+					}
+				} elseif ( $story_data['twae_image']['url'] != '' ) {
+					// Story media image.
+					$image .= '<img src="' . esc_url( $story_data['twae_image']['url'] ) . '" alt="' . esc_attr( $timeline_story_title ) . '">';
+				}
+
+				if ( $story_data['twae_image']['url'] != '' && $story_data['twae_media'] == 'image' ) {
+					$html .= '<!-- Story Image -->';
+					$html .= '<div class="twae-media ' . esc_attr( $image_size ) . '">' . $image . '</div>';
+				}
 			}
 
 			return $html;

@@ -99,11 +99,11 @@ class cool_plugins_feedback {
 						
 			<div class="cool-plugins-deactivation-response">
 			<div id="cool-plugins-deactivate-feedback-dialog-header">
-				<span id="cool-plugins-feedback-form-title"><?php echo __( 'Quick Feedback', 'cool-plugins' ); ?></span>
+				<span id="cool-plugins-feedback-form-title"><?php echo esc_html__( 'Quick Feedback', 'cool-plugins' ); ?></span>
 			</div>
 			<div id="cool-plugins-loader-wrapper">
 				<div class="cool-plugins-loader-container">
-					<img class="cool-plugins-preloader" src="<?php echo $this->plugin_url; ?>feedback/images/cool-plugins-preloader.gif">
+					<img class="cool-plugins-preloader" src="<?php echo esc_url( $this->plugin_url ); ?>admin/feedback/images/cool-plugins-preloader.gif">
 				</div>
 			</div>
 			<div id="cool-plugins-form-wrapper" class="cool-plugins-form-wrapper-cls">
@@ -112,7 +112,7 @@ class cool_plugins_feedback {
 				wp_nonce_field( '_cool-plugins_deactivate_feedback_nonce' );
 				?>
 				<input type="hidden" name="action" value="cool-plugins_deactivate_feedback" />
-				<div id="cool-plugins-deactivate-feedback-dialog-form-caption"><?php echo __( 'If you have a moment, please share why you are deactivating this plugin.', 'cool-plugins' ); ?></div>
+				<div id="cool-plugins-deactivate-feedback-dialog-form-caption"><?php echo esc_html__( 'If you have a moment, please share why you are deactivating this plugin.', 'cool-plugins' ); ?></div>
 				<div id="cool-plugins-deactivate-feedback-dialog-form-body">
 					<?php
 					$reason_key_arr = array( 'didnt_work_as_expected', 'found_a_better_plugin', 'couldnt_get_the_plugin_to_work' );
@@ -131,7 +131,7 @@ class cool_plugins_feedback {
 									$ctb_plugin_url = 'https://wordpress.org/plugins/timeline-block/';
 									?>
 								  <div class="cool-plugins-extra-links">
-									Please try <a href="<?php echo esc_url( $ctl_plugin_url ); ?>" target="_blank">Cool Timeline</a> or <a href="<?php echo esc_url( $ctb_plugin_url ); ?>" target="_blank">Timeline Block</a> plugin.
+									<?php echo esc_html__( 'Please try', 'cool-plugins' ); ?> <a href="<?php echo esc_url( $ctl_plugin_url ); ?>" target="_blank"><?php echo esc_html__( 'Cool Timeline', 'cool-plugins' ); ?></a> <?php echo esc_html__( 'or', 'cool-plugins' ); ?> <a href="<?php echo esc_url( $ctb_plugin_url ); ?>" target="_blank"><?php echo esc_html__( 'Timeline Block', 'cool-plugins' ); ?></a> <?php echo esc_html__( 'plugin.', 'cool-plugins' ); ?>
 									</div>
 									<?php
 								}
@@ -143,11 +143,11 @@ class cool_plugins_feedback {
 							<?php endif; ?>
 						</div>
 					<?php endforeach; ?>
-					<input class="cool-plugins-GDPR-data-notice" id="cool-plugins-GDPR-data-notice" type="checkbox"><label for="cool-plugins-GDPR-data-notice"><?php echo __( 'I consent to having Cool Plugins store my all submitted information via this form, they can also respond to my inquiry.', 'cool-plugins' ); ?></label>
+					<input class="cool-plugins-GDPR-data-notice" id="cool-plugins-GDPR-data-notice" type="checkbox"><label for="cool-plugins-GDPR-data-notice"><?php echo esc_html__( 'I consent to having Cool Plugins store my all submitted information via this form, they can also respond to my inquiry.', 'cool-plugins' ); ?></label>
 				</div>
 				<div class="cool-plugin-popup-button-wrapper">
-					<a class="cool-plugins-button button-deactivate" id="cool-plugin-submitNdeactivate">Submit and Deactivate</a>
-					<a class="cool-plugins-button" id="cool-plugin-skipNdeactivate">Skip and Deactivate</a>
+					<a class="cool-plugins-button button-deactivate" id="cool-plugin-submitNdeactivate"><?php echo esc_html__( 'Submit and Deactivate', 'cool-plugins' ); ?></a>
+					<a class="cool-plugins-button" id="cool-plugin-skipNdeactivate"><?php echo esc_html__( 'Skip and Deactivate', 'cool-plugins' ); ?></a>
 				</div>
 			</form>
 			</div>
@@ -164,24 +164,24 @@ class cool_plugins_feedback {
 			$reason             = htmlspecialchars( $_POST['reason'], ENT_QUOTES );
 			$deactivate_reasons = array(
 				'didnt_work_as_expected'         => array(
-					'title'             => __( 'The plugin didn\'t work as expected', 'cool-plugins' ),
-					'input_placeholder' => 'What did you expect?',
+					'title'             => esc_html__( 'The plugin didn\'t work as expected', 'cool-plugins' ),
+					'input_placeholder' => esc_html__( 'What did you expect?', 'cool-plugins' ),
 				),
 				'found_a_better_plugin'          => array(
-					'title'             => __( 'I found a better plugin', 'cool-plugins' ),
-					'input_placeholder' => __( 'Please share which plugin', 'cool-plugins' ),
+					'title'             => esc_html__( 'I found a better plugin', 'cool-plugins' ),
+					'input_placeholder' => esc_html__( 'Please share which plugin', 'cool-plugins' ),
 				),
 				'couldnt_get_the_plugin_to_work' => array(
-					'title'             => __( 'The plugin is not working', 'cool-plugins' ),
-					'input_placeholder' => 'Please share your issue. So we can fix that for other users.',
+					'title'             => esc_html__( 'The plugin is not working', 'cool-plugins' ),
+					'input_placeholder' => esc_html__( 'Please share your issue. So we can fix that for other users.', 'cool-plugins' ),
 				),
 				'temporary_deactivation'         => array(
-					'title'             => __( 'It\'s a temporary deactivation', 'cool-plugins' ),
+					'title'             => esc_html__( 'It\'s a temporary deactivation', 'cool-plugins' ),
 					'input_placeholder' => '',
 				),
 				'other'                          => array(
-					'title'             => __( 'Other', 'cool-plugins' ),
-					'input_placeholder' => __( 'Please share the reason', 'cool-plugins' ),
+					'title'             => esc_html__( 'Other', 'cool-plugins' ),
+					'input_placeholder' => esc_html__( 'Please share the reason', 'cool-plugins' ),
 				),
 			);
 

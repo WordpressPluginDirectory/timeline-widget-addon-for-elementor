@@ -292,13 +292,13 @@ if ( ! class_exists( 'twae_free_admin_notices' ) ) :
 			$id        = htmlspecialchars( $_REQUEST['id'], ENT_QUOTES );
 			$nonce_key = $id . '_review_nonce';
 
-			if ( check_ajax_referer( $nonce_key, '_nonce' ) ) {
+			if ( check_ajax_referer( $nonce_key, '_nonce' ) && ! empty( $slug ) && ! empty( $id ) ) {
 				update_option( $slug . '_spare_me', 'yes' );
 				echo json_encode( array( 'success' => 'true' ) );
 			} else {
-				// echo json_encode( array("error"=>"nonce verification failed!") );
+				echo json_encode( array( 'error' => 'Invalid request' ) );
 			}
-				exit;
+			exit;
 		}
 
 		/************************************************************

@@ -3,13 +3,13 @@
  * Plugin Name: Timeline Widget For Elementor
  * Description: Best timeline widget for Elementor page builder to showcase your personal or business stories in beautiful vertical or horizontal timeline layouts. <strong>[Elementor Addon]</strong>
  * Plugin URI:  https://coolplugins.net
- * Version:     1.6.0
+ * Version:     1.6.1
  * Author:      Cool Plugins
  * Author URI:  https://coolplugins.net/
  * Domain Path: /languages
  * Text Domain: twae
- * Elementor tested up to: 3.23.1
- * Elementor Pro tested up to: 3.23.0
+ * Elementor tested up to: 3.24.4
+ * Elementor Pro tested up to: 3.24.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,7 +20,7 @@ if ( defined( 'TWAE_VERSION' ) ) {
 	return;
 }
 
-define( 'TWAE_VERSION', '1.6.0' );
+define( 'TWAE_VERSION', '1.6.1' );
 define( 'TWAE_FILE', __FILE__ );
 define( 'TWAE_PATH', plugin_dir_path( TWAE_FILE ) );
 define( 'TWAE_URL', plugin_dir_url( TWAE_FILE ) );
@@ -119,7 +119,7 @@ final class Timeline_Widget_Addon {
 			twae_free_create_admin_notice(
 				array(
 					'id'      => 'twae-upgrade-notices',
-					'message' => '<strong>Major Update Notice!</strong> Please update your timeline widget settings if you face any style issue after an update of <strong>Timeline Widget for Elementor</strong>.',
+					'message' => wp_kses_post( '<strong>Major Update Notice!</strong> Please update your timeline widget settings if you face any style issue after an update of <strong>Timeline Widget for Elementor</strong>.' ),
 				)
 			);
 		}
@@ -129,7 +129,7 @@ final class Timeline_Widget_Addon {
 
 		if ( ! is_plugin_active( 'elementor/elementor.php' ) ) : ?>
 			<div class="notice notice-warning is-dismissible">
-				<p><?php echo sprintf( __( '<a href="%s"  target="_blank" >Elementor Page Builder</a>  must be installed and activated for "<strong>Timeline Widget Addon For Elementor</strong>" to work' ), 'https://wordpress.org/plugins/elementor/' ); ?></p>
+				<p><?php echo wp_kses_post( sprintf( __( '<a href="%s"  target="_blank" >Elementor Page Builder</a>  must be installed and activated for "<strong>Timeline Widget Addon For Elementor</strong>" to work' ), 'https://wordpress.org/plugins/elementor/' ) ); ?></p>
 			</div>
 			<?php
 			deactivate_plugins( 'timeline-widget-addon-for-elementor/timeline-widget-addon-for-elementor.php' );
@@ -141,7 +141,7 @@ final class Timeline_Widget_Addon {
 	 * Run when activate plugin.
 	 */
 	public static function twae_activate() {
-		update_option( 'twae-free-v', TWAE_VERSION );
+		update_option( 'twae-free-v', sanitize_text_field( TWAE_VERSION ) );
 		update_option( 'twae-type', 'FREE' );
 		update_option( 'twae-installDate', date( 'Y-m-d h:i:s' ) );
 	}

@@ -43,10 +43,10 @@ if ( ! class_exists( 'twae_welcome_page' ) ) {
 		 */
 		public function show_plugins( $main_menu_slug, $menu_slug, $page_heading, $menu_title ) {
 			if ( ! empty( $menu_slug ) && ! empty( $page_heading ) ) {
-				$this->menu_slug      = $menu_slug;
-				$this->main_menu_slug = $main_menu_slug;
-				$this->page_heading   = $page_heading;
-				$this->menu_title     = $menu_title;
+				$this->menu_slug      = sanitize_text_field( $menu_slug );
+				$this->main_menu_slug = sanitize_text_field( $main_menu_slug );
+				$this->page_heading   = sanitize_text_field( $page_heading );
+				$this->menu_title     = sanitize_text_field( $menu_title );
 			} else {
 				return false;
 			}

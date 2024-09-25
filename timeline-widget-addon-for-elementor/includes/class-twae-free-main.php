@@ -62,7 +62,6 @@ final class TWAE_Free_Main {
 	public function __construct() {
 
 		if ( $this->is_compatible() ) {
-			$twae_ads_close = get_option( 'twae_ads_close', false );
 			add_action( 'elementor/init', array( $this, 'init' ) );
 			// Add a custom category for panel widgets
 			add_action( 'elementor/init', array( $this, 'register_timeline_category' ) );
@@ -120,7 +119,7 @@ final class TWAE_Free_Main {
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'twae' ),
 			'<strong>' . esc_html__( 'Timeline Widget Pro For Elementor', 'twae' ) . '</strong>',
 			'<strong>' . esc_html__( 'PHP', 'twae' ) . '</strong>',
-			self::MINIMUM_PHP_VERSION
+			esc_html( self::MINIMUM_PHP_VERSION ) // Escape output
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );

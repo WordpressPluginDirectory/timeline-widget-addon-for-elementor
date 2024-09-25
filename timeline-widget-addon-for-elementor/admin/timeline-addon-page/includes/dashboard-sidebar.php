@@ -18,14 +18,17 @@ if ( ! isset( $this->main_menu_slug ) ) :
  <div class="cool-body-right">
 	<a href="https://coolplugins.net/?utm_source=twae-plugin&utm_medium=inside&utm_campaign=twae-free-dashboard" target="_blank"><img src="<?php echo esc_url( TWAE_URL ) . 'admin/timeline-addon-page/assets/coolplugins-logo.png'; ?>"></a>
 	<ul>
-	  <li>Cool Plugins develops best timeline plugins for WordPress.</li>
-	  <li>Our timeline plugins have <b>50000+</b> active installs.</li>
-	  <li>For any query or support, please contact plugin support team.
-	  <br><br>
-	  <a href="<?php echo esc_attr( $cool_support_email ); ?>" target="_blank" class="button button-secondary">Premium Plugin Support</a>
-	  <br><br>
+	  <li><?php echo esc_html__( 'Cool Plugins develops best timeline plugins for WordPress.', 'twae' ); ?></li>
+	  <li><?php printf( esc_html__( 'Our timeline plugins have %1$s50000+%2$s active installs.', 'cool-timeline' ), '<b>', '</b>' ); ?></li>
+	  <li>
+		<?php echo esc_html__( 'For any query or support, please contact plugin support team.', 'twae' ); ?>
+		<br><br>
+		<a href="<?php echo esc_url( $cool_support_email ); ?>" target="_blank" class="button button-secondary">
+			<?php echo esc_html__( 'Premium Plugin Support', 'twae' ); ?>
+		</a>
+		<br><br>
 	  </li>
-   </ul>
-	</div>
+	</ul>
+</div>
 
 </div><!-- End of main container-->

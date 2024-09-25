@@ -32,21 +32,24 @@ if ( class_exists( 'WPML_Elementor_Module_With_Items' ) && ! class_exists( 'TWAE
 		 * @return string
 		 */
 		protected function get_title( $field ) {
+			// Sanitize field input
+			$field = sanitize_text_field( $field );
+
 			switch ( $field ) {
 				case 'twae_story_title':
-					return esc_html__( 'Timeline: Title', 'twae' );
+					return esc_html__( 'Timeline: Title', 'twae' ); // Escape output
 
 				case 'twae_description':
-					return esc_html__( 'Timeline: Desc', 'twae' );
+					return esc_html__( 'Timeline: Desc', 'twae' ); // Escape output
 
 				case 'twae_year':
-					return esc_html__( 'Timeline: Year', 'twae' );
+					return esc_html__( 'Timeline: Year', 'twae' ); // Escape output
 
 				case 'twae_date_label':
-					return esc_html__( 'Timeline: Label', 'twae' );
+					return esc_html__( 'Timeline: Label', 'twae' ); // Escape output
 
 				case 'twae_extra_label':
-					return esc_html__( 'Timeline: Sub Label', 'twae' );
+					return esc_html__( 'Timeline: Sub Label', 'twae' ); // Escape output
 
 				default:
 					return '';

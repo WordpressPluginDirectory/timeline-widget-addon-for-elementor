@@ -4,7 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 $widget_id = $this->get_id();
 $countItem = 1;
-$data      = $settings['twae_list'];
+$data      = isset( $settings['twae_list'] ) ? $settings['twae_list'] : array();
+
 $this->add_render_attribute(
 	'twae-wrapper',
 	array(
@@ -36,9 +37,9 @@ if ( is_array( $data ) ) {
 			}
 		}
 
-		$story_id = $content['_id'];
+		$story_id = isset( $content['_id'] ) ? esc_attr( $content['_id'] ) : '';
 
-		$icon_type = isset( $content['twae_icon_type'] ) ? $content['twae_icon_type'] : 'icon';
+		$icon_type = isset( $content['twae_icon_type'] ) ? esc_attr( $content['twae_icon_type'] ) : 'icon';
 
 		$title_key = $this->get_repeater_setting_key( 'twae_story_title', 'twae_list', $index );
 
@@ -51,10 +52,10 @@ if ( is_array( $data ) ) {
 		$this->add_inline_editing_attributes( $sub_label_key, 'none' );
 		$this->add_inline_editing_attributes( $description_key, 'advanced' );
 
-		$this->add_render_attribute( $title_key, array( 'class' => esc_html( 'twae-title' ) ) );
-		$this->add_render_attribute( $date_label_key, array( 'class' => esc_html( 'twae-label-big' ) ) );
-		$this->add_render_attribute( $sub_label_key, array( 'class' => esc_html( 'twae-label-small' ) ) );
-		$this->add_render_attribute( $description_key, array( 'class' => esc_html( 'twae-description' ) ) );
+		$this->add_render_attribute( $title_key, array( 'class' => esc_attr( 'twae-title' ) ) );
+		$this->add_render_attribute( $date_label_key, array( 'class' => esc_attr( 'twae-label-big' ) ) );
+		$this->add_render_attribute( $sub_label_key, array( 'class' => esc_attr( 'twae-label-small' ) ) );
+		$this->add_render_attribute( $description_key, array( 'class' => esc_attr( 'twae-description' ) ) );
 
 		$article_key = 'twae-article-' . esc_attr( $story_id );
 

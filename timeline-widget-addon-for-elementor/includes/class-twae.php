@@ -51,8 +51,8 @@ class TWAE_WidgetClass {
 			array(
 				array(
 					'name'        => 'twae-post-timeline',
-					'title'       => __( 'Post Timeline', 'twae' ),
-					'description' => 'it is testing fine here',
+					'title'       => esc_html__( 'Post Timeline', 'twae' ), // Escape output
+					'description' => esc_html__( 'it is testing fine here', 'twae' ), // Escape output
 					'icon'        => 'twae-pro eicon-time-line',
 					'categories'  => '["twae"]',
 				),          /*

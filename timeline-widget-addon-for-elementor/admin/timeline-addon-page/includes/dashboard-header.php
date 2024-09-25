@@ -17,6 +17,6 @@ $cool_plugins_more_info = TWAE_DEMO_URL;
 <div id="cool-plugins-container" class="cool-plugins-timeline-addon">
 	<div class="cool-header">
 		<h2 style=""><?php echo esc_html( $this->dashboar_page_heading ); ?></h2>
-	<a href="<?php echo esc_url( $cool_plugins_docs ); ?>" target="_docs" class="button">Docs</a>
-	<a href="<?php echo esc_url( $cool_plugins_more_info ); ?>" target="_info" class="button">Demos</a>
+	<a href="<?php echo esc_url( $cool_plugins_docs ); ?>" target="_docs" class="button"><?php echo esc_html__( 'Docs', 'twae' ); ?></a>
+	<a href="<?php echo esc_url( $cool_plugins_more_info ); ?>" target="_info" class="button"><?php echo esc_html__( 'Demos', 'twae' ); ?></a>
 </div>
