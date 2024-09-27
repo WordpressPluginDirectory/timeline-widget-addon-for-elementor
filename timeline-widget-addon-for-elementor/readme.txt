@@ -5,7 +5,7 @@ Tags:timeline,elementor timeline,roadmap,history,horizontal timeline
 Requires at least:5.0
 Tested up to:6.6
 Requires PHP:7.2
-Stable tag:1.6.1
+Stable tag:1.6.2
 License:GPLv2 or later
 License URI:http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,9 @@ The widget is versatile and suitable for various uses such as business milestone
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/timeline-widget-addon-for-elementor)
 
 == Changelog ==
+**Version 1.6.2 | 27 September 2024**
+- **Removed:** Elementor caching system to fix assests loading issue.
+
 **Version 1.6.1 | 25 September 2024**
 - **Added:** Elementor caching system to improve performance.
 - **Fixed:** Elementor js error in admin preview page.

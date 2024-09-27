@@ -40,10 +40,6 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 		wp_register_script( 'twae-horizontal-js', TWAE_URL . 'assets/js/twae-horizontal.min.js', $js_common_dep, TWAE_VERSION, true );
 	}
 
-	protected function is_dynamic_content(): bool {
-		return false;
-	}
-
 	public function get_script_depends() {
 		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
 			return array( 'twae-horizontal-js' );
