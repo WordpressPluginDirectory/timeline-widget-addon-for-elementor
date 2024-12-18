@@ -24,23 +24,38 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 			$ext = '.min.css';
 		}
 
-		$js_common_dep = array( 'elementor-frontend' );
-
-		if ( ! \Elementor\Plugin::$instance->preview->is_preview_mode() && is_user_logged_in() ) {
-			$js_common_dep = array( 'elementor-common', 'elementor-frontend' );
-		}
-
 		wp_register_style( 'twae-vertical-timeline', TWAE_URL . 'assets/css/twae-vertical-timeline' . $ext, array(), TWAE_VERSION, 'all' );
 
 		wp_register_style( 'twae-common-styles', TWAE_URL . 'assets/css/twae-common-styles' . $ext, array(), TWAE_VERSION, 'all' );
 
-		wp_register_style( 'twae-horizontal-timeline', TWAE_URL . 'assets/css/twae-horizontal-timeline' . $ext, array(), TWAE_VERSION, 'all' );
+		wp_register_style( 'twae-horizontal-timeline', TWAE_URL . 'assets/css/twae-horizontal-timeline' . $ext, array('swiper'), TWAE_VERSION, 'all' );
 
 		wp_register_style( 'font-awesome-5-all', ELEMENTOR_ASSETS_URL . 'lib/font-awesome/css/all' . $ext, array(), TWAE_VERSION, 'all' );// load elementor fontawesome
-		wp_register_script( 'twae-horizontal-js', TWAE_URL . 'assets/js/twae-horizontal.min.js', $js_common_dep, TWAE_VERSION, true );
+	}
+
+	/**
+	 * Registers the necessary scripts for the widget after the frontend has been enqueued.
+	 *
+	 * This method should contain the logic for registering scripts that are required 
+	 * for the proper functionality of the widget.
+	 */
+	public function twae_register_script() {
+		$min_v   = true;
+		$js_ext  = '.js';
+		if ( true === $min_v ) {
+			$js_ext  = '.min.js';
+		}
+	
+		$js_common_dep = array( 'elementor-frontend' );
+
+		// Horizontal Timeline.
+		wp_register_script( 'twae-horizontal-js', esc_url(TWAE_URL . 'assets/js/twae-horizontal'.$js_ext), $js_common_dep, TWAE_VERSION, true );
 	}
 
 	public function get_script_depends() {
+
+		$this->twae_register_script();
+
 		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
 			return array( 'twae-horizontal-js' );
 		}

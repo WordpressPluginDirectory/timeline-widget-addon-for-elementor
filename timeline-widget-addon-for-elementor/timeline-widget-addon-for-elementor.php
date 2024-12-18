@@ -3,13 +3,13 @@
  * Plugin Name: Timeline Widget For Elementor
  * Description: Best timeline widget for Elementor page builder to showcase your personal or business stories in beautiful vertical or horizontal timeline layouts. <strong>[Elementor Addon]</strong>
  * Plugin URI:  https://coolplugins.net
- * Version:     1.6.2
+ * Version:     1.6.6
  * Author:      Cool Plugins
  * Author URI:  https://coolplugins.net/
  * Domain Path: /languages
  * Text Domain: twae
- * Elementor tested up to: 3.24.4
- * Elementor Pro tested up to: 3.24.4
+ * Elementor tested up to: 3.26.0
+ * Elementor Pro tested up to: 3.25.3
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,7 +20,7 @@ if ( defined( 'TWAE_VERSION' ) ) {
 	return;
 }
 
-define( 'TWAE_VERSION', '1.6.2' );
+define( 'TWAE_VERSION', '1.6.6' );
 define( 'TWAE_FILE', __FILE__ );
 define( 'TWAE_PATH', plugin_dir_path( TWAE_FILE ) );
 define( 'TWAE_URL', plugin_dir_url( TWAE_FILE ) );
@@ -70,8 +70,8 @@ final class Timeline_Widget_Addon {
 		// Load the plugin after Elementor (and other plugins) are loaded.
 		add_action( 'plugins_loaded', array( $this, 'twae_plugins_loaded' ) );
 		add_action( 'plugins_loaded', array( $this, 'twae_load_addon' ) );
+		add_action('init', array($this, 'twae_plugin_textdomain'));
 	}
-
 
 	/**
 	 * Code you want to run when all other plugins loaded.
@@ -84,8 +84,6 @@ final class Timeline_Widget_Addon {
 			return;
 		}
 
-		load_plugin_textdomain( 'twae', false, basename( dirname( __FILE__ ) ) . '/languages/' );
-
 		// Require the main plugin file
 		// require( __DIR__ . '/includes/class-twae.php' );
 		if ( is_admin() ) {
@@ -94,6 +92,7 @@ final class Timeline_Widget_Addon {
 			new TWAEFeedbackNotice();
 			require_once __DIR__ . '/admin/feedback/twae-admin-feedback-form.php';
 			require_once __DIR__ . '/admin/admin-notices.php';
+			require_once __DIR__ . '/admin/form-plugin-notice.php';
 
 			require_once TWAE_PATH . '/admin/timeline-addon-page/timeline-welcome-page.php';
 
@@ -101,9 +100,17 @@ final class Timeline_Widget_Addon {
 		}
 
 		if ( is_admin() ) {
+			add_action('admin_init', array($this,'twae_form_plugin_notice'));
 			add_action( 'admin_init', array( $this, 'twae_show_upgrade_notice' ) );
 		}
 	}   // end of ctla_loaded()
+
+	/**
+	 * Load the plugin text domain for translation.
+	 */
+	public function twae_plugin_textdomain() {
+		load_plugin_textdomain( 'twae', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+	}
 
 
 	function twae_load_addon() {
@@ -122,6 +129,12 @@ final class Timeline_Widget_Addon {
 					'message' => wp_kses_post( '<strong>Major Update Notice!</strong> Please update your timeline widget settings if you face any style issue after an update of <strong>Timeline Widget for Elementor</strong>.' ),
 				)
 			);
+		}
+	}
+
+	public function twae_form_plugin_notice() {
+		if(class_exists('twae_free_form_plugin_notice')){
+			twae_free_form_plugin_notice::instance('cool-form-free','Are you using the <strong>Elementor Form widget</strong> to create forms? Make your forms smarter with conditional fields and improve your form-building experience!<br><a href="'.esc_url(site_url().'/wp-admin/plugin-install.php?tab=plugin-information&plugin=conditional-fields-for-elementor-form&TB_iframe=true&width=772&height=885').'" class="thickbox button button-primary open-plugin-details-modal" style="margin-right: 10px; margin-top: 10px;">'.esc_html__( 'Install Plugin', 'twae' ).'</a><a href="'.esc_url("https://coolplugins.net/product/conditional-fields-for-elementor-form/?utm_source=twae_plugin&utm_medium=inside&utm_campaign=plugins_list&utm_content=demo#demos").'" class="button button-primary" target="_blank" style="margin-right: 10px;">'.esc_html__( 'View Demos', 'twae' ).'</a>',5);
 		}
 	}
 
