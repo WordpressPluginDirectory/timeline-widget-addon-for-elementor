@@ -3,9 +3,9 @@
  * Plugin Name: Timeline Widget For Elementor
  * Description: Best timeline widget for Elementor page builder to showcase your personal or business stories in beautiful vertical or horizontal timeline layouts. <strong>[Elementor Addon]</strong>
  * Plugin URI:  https://coolplugins.net
- * Version:     1.6.8
+ * Version:     1.6.9.1
  * Author:      Cool Plugins
- * Author URI:  https://coolplugins.net/
+ * Author URI:  https://coolplugins.net/?utm_source=twae_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=dashboard
  * Domain Path: /languages
  * Text Domain: twae
  * Elementor tested up to: 3.28.0
@@ -20,12 +20,12 @@ if ( defined( 'TWAE_VERSION' ) ) {
 	return;
 }
 
-define( 'TWAE_VERSION', '1.6.8' );
+define( 'TWAE_VERSION', '1.6.9.1' );
 define( 'TWAE_FILE', __FILE__ );
 define( 'TWAE_PATH', plugin_dir_path( TWAE_FILE ) );
 define( 'TWAE_URL', plugin_dir_url( TWAE_FILE ) );
-define( 'TWAE_BUY_PRO_LINK', 'https://coolplugins.net/product/elementor-timeline-widget-pro-addon/?utm_source=twae_plugin&utm_medium=inside&utm_campaign=get_pro' );
-
+define( 'TWAE_BUY_PRO_LINK', 'https://cooltimeline.com/plugin/elementor-timeline-widget-pro/?utm_source=twae_plugin&utm_medium=inside&utm_campaign=get_pro' );
+define( 'TWAE_FEEDBACK_API', 'https://feedback.coolplugins.net/' );
 if ( ! defined( 'TWAE_DEMO_URL' ) ) {
 	define( 'TWAE_DEMO_URL', 'https://cooltimeline.com/demo/elementor-timeline-widget/?utm_source=twae-plugin&utm_medium=inside&utm_campaign=twae-free-dashboard' );
 }
@@ -71,7 +71,22 @@ final class Timeline_Widget_Addon {
 		add_action( 'plugins_loaded', array( $this, 'twae_plugins_loaded' ) );
 		add_action( 'plugins_loaded', array( $this, 'twae_load_addon' ) );
 		add_action('init', array($this, 'twae_plugin_textdomain'));
+		 add_action( 'activated_plugin', array( $this, 'twae_plugin_redirection' ) );
+
+	    $this->cpfm_load_file();
 	}
+
+	public function cpfm_load_file(){
+
+        if(!class_exists('CPFM_Feedback_Notice')){
+            require_once __DIR__ . '/admin/feedback/cpfm-feedback-notice.php';
+        }
+        require_once __DIR__ . '/includes/cron/class-cron.php';
+
+		if (  is_plugin_active( 'elementor/elementor.php' )) {
+			require_once TWAE_PATH . '/admin/twae-marketing-common.php';
+		}
+    }
 
 	/**
 	 * Code you want to run when all other plugins loaded.
@@ -87,6 +102,7 @@ final class Timeline_Widget_Addon {
 		// Require the main plugin file
 		// require( __DIR__ . '/includes/class-twae.php' );
 		if ( is_admin() ) {
+			$pluginpath= plugin_basename( __FILE__ );
 			/*** Plugin review notice file */
 			require_once __DIR__ . '/admin/twae-feedback-notice.php';
 			new TWAEFeedbackNotice();
@@ -97,12 +113,46 @@ final class Timeline_Widget_Addon {
 			require_once TWAE_PATH . '/admin/timeline-addon-page/timeline-welcome-page.php';
 
 			twae_welcome_page( 'elementor', 'twae-welcome-page', 'Timeline Widget', 'Timeline Widget' );
+			add_filter( "plugin_action_links_$pluginpath", array( $this, 'ctl_settings_link' ) );
 		}
 
 		if ( is_admin() ) {
 			add_action('admin_init', array($this,'twae_form_plugin_notice'));
 			add_action( 'admin_init', array( $this, 'twae_show_upgrade_notice' ) );
 		}
+
+		add_action('cpfm_register_notice', function () {
+            
+			if (!class_exists('CPFM_Feedback_Notice') || !current_user_can('manage_options')) {
+				return;
+			}
+
+			$notice = [
+
+				'title' => __('Timeline Plugins by Cool Plugins', 'twae'),
+				'message' => __('Help us make this plugin more compatible with your site by sharing non-sensitive site data.', 'cool-plugins-feedback'),
+				'pages' => ['twae-welcome-page'],
+				'always_show_on' => ['twae-welcome-page'], // This enables auto-show
+				'plugin_name'=>'twae'
+			];
+
+			CPFM_Feedback_Notice::cpfm_register_notice('cool-timeline', $notice);
+
+				if (!isset($GLOBALS['cool_plugins_feedback'])) {
+					$GLOBALS['cool_plugins_feedback'] = [];
+				}
+			
+				$GLOBALS['cool_plugins_feedback']['cool-timeline'][] = $notice;
+	   
+		});
+		add_action('cpfm_after_opt_in_twae', function($category) {
+
+			if ($category === 'cool-timeline') {
+
+				TWAE_cronjob::twae_send_data();
+			}
+		});
+
 	}   // end of ctla_loaded()
 
 	/**
@@ -110,8 +160,25 @@ final class Timeline_Widget_Addon {
 	 */
 	public function twae_plugin_textdomain() {
 		load_plugin_textdomain( 'twae', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+		if (!get_option( 'twae_initial_save_version' ) ) {
+                add_option( 'twae_initial_save_version', TWAE_VERSION );
+            }
+            if(!get_option( 'twae-install-date' ) ) {
+                add_option( 'twae-install-date', gmdate('Y-m-d h:i:s') );
+            }
 	}
 
+		public function twae_plugin_redirection( $plugin ) {
+			if ( plugin_basename( __FILE__ ) === $plugin ) {
+				exit( wp_redirect( admin_url( 'admin.php?page=twae-welcome-page' ) ) );
+			}
+		}
+public function ctl_settings_link( $links ) {
+			
+			$links[] = '<a style="font-weight:bold; color:#852636;" href="https://cooltimeline.com/plugin/elementor-timeline-widget-pro/?utm_source=twae_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=plugin_list" target="_blank">Get Pro</a>';
+
+			return $links;
+		}
 
 	function twae_load_addon() {
 		// Load plugin file
@@ -157,12 +224,36 @@ final class Timeline_Widget_Addon {
 		update_option( 'twae-free-v', sanitize_text_field( TWAE_VERSION ) );
 		update_option( 'twae-type', 'FREE' );
 		update_option( 'twae-installDate', date( 'Y-m-d h:i:s' ) );
+
+		
+		if (!get_option( 'twae_initial_save_version' ) ) {
+			add_option( 'twae_initial_save_version', TWAE_VERSION );
+		}
+
+		if(!get_option( 'twae-install-date' ) ) {
+			add_option( 'twae-install-date', gmdate('Y-m-d h:i:s') );
+		}
+		$review_option = get_option( 'cpfm_opt_in_choice_cool-timeline' );
+		if($review_option === 'yes'){
+
+			if (!wp_next_scheduled('twae_extra_data_update')) {
+	
+				wp_schedule_event(time(), 'every_30_days', 'twae_extra_data_update');
+	
+			}
+	}
+
 	}
 
 	/**
 	 * Run when deactivate plugin.
 	 */
 	public static function twae_deactivate() {
+
+		if (wp_next_scheduled('twae_extra_data_update')) {
+			wp_clear_scheduled_hook('twae_extra_data_update');
+		}
+
 	}
 }
 

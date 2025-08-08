@@ -765,7 +765,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'label'           => '',
 				'label_block'     => true,
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
-				'raw'             => '<a target="_blank" href="' . TWAE_BUY_PRO_LINK . '&utm_content=story_content_settings">
+				'raw'             => '<a target="_blank" href="' . TWAE_BUY_PRO_LINK . '&utm_content=story_advanced_settings">
 						<img class="twae-screenshots" src="' . TWAE_URL . 'assets/images/pro/icon-image-settings.png"></a>',
 				'content_classes' => 'twae_pro_content',
 				'condition'       => array(
@@ -780,7 +780,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'label'           => '',
 				'label_block'     => true,
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
-				'raw'             => '<a target="_blank" href="' . TWAE_BUY_PRO_LINK . '&utm_content=story_content_settings">
+				'raw'             => '<a target="_blank" href="' . TWAE_BUY_PRO_LINK . '&utm_content=story_advanced_settings">
 						<img class="twae-screenshots" src="' . TWAE_URL . 'assets/images/pro/icon-text-settings.png"></a>',
 				'content_classes' => 'twae_pro_content',
 				'condition'       => array(
@@ -795,7 +795,7 @@ class TWAE_Widget extends \Elementor\Widget_Base {
 				'label'           => '',
 				'label_block'     => true,
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
-				'raw'             => '<a target="_blank" href="' . TWAE_BUY_PRO_LINK . '&utm_content=story_content_settings">
+				'raw'             => '<a target="_blank" href="' . TWAE_BUY_PRO_LINK . '&utm_content=story_advanced_settings">
 						<img class="twae-screenshots" src="' . TWAE_URL . 'assets/images/pro/button-settings.png"></a>',
 				'content_classes' => 'twae_pro_content',
 				'separator'       => 'before',
